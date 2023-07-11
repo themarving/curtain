@@ -1,9 +1,12 @@
 // include arduino stepper library
 #include <Stepper.h>
 
-// include wifimanager library to gain wifi credentials via ap
-#include <WiFiManager.h>                  
-WiFiManager wifiManager;
+// include wifinina and spi library to be able to connect board to wifi
+#include <SPI.h>
+#include <WiFiNINA.h>             
+char wlanID[] = "iPhone";
+char wlanPASS[] = "uniOl123";
+int status = WL_IDLE_STATUS;
 WiFiClient client;
 
 // include arduinojson library to parse json
@@ -24,7 +27,7 @@ boolean curtainToClose = true;
 
 // variables to connect to Open-Weather-Map via API-Key (https://openweathermap.org/)
 const String city = "Oldenburg";
-const String api_key = "286d10545404460304dab82ce79f2d04";
+const String api_key = "10f3b7e5d5ab9ad74903e045c692941a";
 
 // variable to save current weather as id
 int weatherID = 0;
@@ -44,63 +47,78 @@ void setup() {
   delay(1000);  
   
   // use IP 192.168.4.1 when having problems at usual connection
-  wifiManager.autoConnect("CurtainCall");      // choose ssid name for your hotspot
-  delay(2000);
+  while (status != WL_CONNECTED){
+    Serial.print("Attempting to connect to network: ");
+    Serial.println(wlanID);
+    status = WiFi.begin(wlanID, wlanPASS);
+    delay(10000);
+  }
+  Serial.println("Successfully connected to network");
   weatherCheck();            // refreshing weather variables after (re-)starting
 }
 
 void loop() {
  // make sure that weather and weather variables get refreshed after ca. 3 minutes
- if (millis() - timecheck >= 180000) {
-  weatherCheck();
-  timecheck = millis();
+  if (millis() - timecheck >= 180000) {
+    weatherCheck();
+    timecheck = millis();
 
-  // refresh curtainToClose via refreshed weather variables
-  switch (weatherIDshortened) {
-    case 2:
-      curtainToClose = true;
-      break;
-    case 3:
-      if (weatherID == 300 || weatherID == 301) {
+    // refresh curtainToClose via refreshed weather variables
+    switch (weatherIDshortened) {
+      case 2:
         curtainToClose = true;
-      } else {
+        break;
+      case 3:
+        if (weatherID == 300 || weatherID == 301) {
+          curtainToClose = true;
+        } else {
         curtainToClose = false;
-      }
-      break;
+        }
+        break;
      case 5:
-      if (weatherID == 500) {
-        curtainToClose = true;
-      } else {
-        curtainToClose = false;
-      }
-      break;
+        if (weatherID == 500) {
+          curtainToClose = true;
+        } else {
+          curtainToClose = false;
+        }
+        break;
      case 6:
-      if (weatherID == 600 || weatherID == 601) {
-        curtainToClose = true;
-      } else {
-        curtainToClose = false;
-      }
-      break;
+        if (weatherID == 600 || weatherID == 601) {
+          curtainToClose = true;
+        } else {
+          curtainToClose = false;
+        }
+        break;
      case 7:
-      if (weatherID == 741) {
-        curtainToClose = false;
-      } else {
-        curtainToClose = true;
-      }
-      break;
+        if (weatherID == 741) {
+          curtainToClose = false;
+        } else {
+          curtainToClose = true;
+        }
+        break;
      case 8:
-      if (weatherID == 803 || weatherID == 804) {
-        curtainToClose = false;
-      } else {
-        curtainToClose = true;
-      }
-      break;
+        if (weatherID == 803 || weatherID == 804) {
+          curtainToClose = false;
+        } else {
+          curtainToClose = true;
+        }
+        break;
+    }
   }
+
+  // close curtain when curtain is opened and should be close or open when opposite situation
+  if (curtainToClose == true && curtainClosed == false) {
+    closeCurtain(PUSH_PULL_LENGTH);
+  } else if (curtainToClose == false && curtainClosed == true) {
+    openCurtain(PUSH_PULL_LENGTH);
+  }
+  delay(3000);
 }
 
 // opening the curtain
 void openCurtain(int steps) {
   // making the motor run continuous (COUNTERCLOCKWISE)
+  Serial.println("opening curtain.");
   motorControl.step(steps);
   curtainClosed = false;
 }
@@ -108,6 +126,7 @@ void openCurtain(int steps) {
 // closing the curtain
 void closeCurtain(int steps) {
   // making the motor run continuous (CLOCKWISE)
+  Serial.println("closing curtain.");
   motorControl.step(-steps);
   curtainClosed = true;
 }
