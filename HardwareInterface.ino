@@ -16,7 +16,7 @@ WiFiClient client;
 const int STEPS_PER_REVOLUTION = 2048;
 
 // push/pull length of opening/closing the curtain
-const int PUSH_PULL_LENGTH = 1500;
+const int PUSH_PULL_LENGTH = 9000;
 
 // creating motor control unit
 Stepper motorControl = Stepper(STEPS_PER_REVOLUTION, 8, 9, 10, 11);
@@ -38,7 +38,7 @@ unsigned long timecheck = 0;
 
 void setup() {
   // setting motor RPM
-  motorControl.setSpeed(5);
+  motorControl.setSpeed(7);
 
   // DEMO OPENING AND CLOSING CURTAIN //
   openCurtain(PUSH_PULL_LENGTH);
@@ -150,4 +150,5 @@ void weatherCheck() {
   // weatherIDs available at https://openweathermap.org/weather-conditions
   weatherID = doc["weather"][0]["id"];
   weatherIDshortened = weatherID / 100;
+  Serial.println(weatherID);
 }                          
