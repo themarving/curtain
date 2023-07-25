@@ -13,7 +13,7 @@ Erstnutzung
 Das automatische Gardinenöffnungs und -schließungssystem benötigt ein W-LAN-Netzwerk, mit dem es sich verbinden kann und eine Stromquelle.
 Bevor eine Stromverbindung hergestellt wird, müssen einige Daten an ihr Heim angepasst werden.
 
-In der Datei HardwareInterface.ino finden Sie den Programmcode, bei dem Daten an ihr W-LAN-Netzwerk und Ort angepasst werden müssen.
+In der Datei [HardwareInterface.ino](https://github.com/themarving/curtain/blob/main/HardwareInterface.ino) finden Sie den Programmcode, bei dem Daten an ihr W-LAN-Netzwerk und Ort angepasst werden müssen.
 In Zeile 7 und 8 müssen die W-LAN-Netzwerk Daten angepasst werden, wobei in den Anführungszeichen in Zeile 7 Ihr Netzwerkname und in Zeile 8 Ihr Netzwerkpasswort muss.
 In Zeile 29 und 30 muss die Information für die Open-Weather-Map (https://openweathermap.org/) an Ihre Daten angepasst werden.
 Zeile 29 benötigt in den Anführungszeichen den Ortsnamen ihres Standpunktes, wie er in Open-Weather-Map verfügbar ist.
