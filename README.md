@@ -1,7 +1,7 @@
 ------------------------------------------------------
 Vorwort
 ------------------------------------------------------
-Vielen Dank für das Erwerben unseres Produktes, die selbstständig öffnende und schließende Gardinenstange!
+Herzlich Willkommen zu unserem Produkt, der selbstständig öffnenden und schließenden Gardinenstange!
 Das Produkt unterstützt Sie darin, die Gardine automatisch zu öffnen und zu schließen.
 Die automatischen Funktionen hängen von dem Zustand des Wetters am eingestellten Ort ab.
 Mit diesen Funktionen unterstützt das Produkt Sie darin eine zu hohe Helligkeit durch das Wetter zu vermeiden.
