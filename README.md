@@ -13,13 +13,14 @@ Erstnutzung
 Das automatische Gardinenöffnungs und -schließungssystem benötigt ein W-LAN-Netzwerk, mit dem es sich verbinden kann und eine Stromquelle.
 Bevor eine Stromverbindung hergestellt wird, müssen einige Daten an ihr Heim angepasst werden.
 
-In der Datei [HardwareInterface.ino](https://github.com/themarving/curtain/blob/main/HardwareInterface.ino) finden Sie den Programmcode, bei dem Daten an ihr W-LAN-Netzwerk und Ort angepasst werden müssen.
+In der Datei [HardwareInterface.ino](./HardwareInterface.ino) finden Sie den Programmcode, bei dem Daten an ihr W-LAN-Netzwerk und Ort angepasst werden müssen.
 In Zeile 7 und 8 müssen die W-LAN-Netzwerk Daten angepasst werden, wobei in den Anführungszeichen in Zeile 7 Ihr Netzwerkname und in Zeile 8 Ihr Netzwerkpasswort muss.
 In Zeile 29 und 30 muss die Information für die Open-Weather-Map (https://openweathermap.org/) an Ihre Daten angepasst werden.
 Zeile 29 benötigt in den Anführungszeichen den Ortsnamen ihres Standpunktes, wie er in Open-Weather-Map verfügbar ist.
 Zeile 30 benötigt einen gültigen Wetter-API-Schlüssel, den sie kostenlos bei der zugehörigen Website beantragen können.
 
 Die Gardine wird bei Stromzufuhr testweise geöffnet und geschlossen, stellen Sie sicher dass die Gardine im geschlossenen Zustand vor dem nächsten Schritt ist.
+Die Gardine sollte, wie im Bild [Gardine_geschlossen](./media/Gardine_geschlossen.png), vollständig geschlossen sein.
 Schließen Sie ihr Endgerät an das Produkt an und lassen Sie die Gardine testweise öffnen und schließen. 
 Laden Sie danach die veränderte Datei, mittels z.B. Arduino IDE, an das Produkt und überprüfen Sie anhand der Seriellen Konsole, 
 ob die Internetverbindung und Wetterzustandsabrufe funktionieren.
