@@ -5,7 +5,7 @@
 #include <SPI.h>
 #include <WiFiNINA.h>             
 char wlanID[] = "iPhone";
-char wlanPASS[] = "uniOl123";
+char wlanPASS[] = "PLACEHOLDER";
 int status = WL_IDLE_STATUS;
 WiFiClient client;
 
